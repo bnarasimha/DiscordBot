@@ -47,6 +47,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          echo ls
-          echo ${{ secrets.REMOTE_TARGET }}/web.py
+          cd /home/paperspace/Documents/discordbot
+          ls
           python ${{ secrets.REMOTE_TARGET }}/web.py
