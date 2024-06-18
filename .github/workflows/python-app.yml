@@ -35,18 +35,18 @@ jobs:
           # SCRIPT_BEFORE: |
           #   whoami
           #   ls -al
-          SCRIPT_AFTER: |
-            echo ls
-            echo ${{ secrets.REMOTE_TARGET }}/web.py
-            python ${{ secrets.REMOTE_TARGET }}/web.py
-    # - name: Start Gradio App
-    #   uses: appleboy/ssh-action@v1.0.3
-    #   with:
-    #     host: ${{ secrets.REMOTE_HOST }}
-    #     username: ${{ secrets.REMOTE_USER }}
-    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-    #     port: 22
-    #     script: |
-    #       pip install -r requirements.txt
-    #       echo ${{ secrets.REMOTE_TARGET }}/web.py
-    #       python ${{ secrets.REMOTE_TARGET }}/web.py
+          # SCRIPT_AFTER: |
+          #   echo ls
+          #   echo ${{ secrets.REMOTE_TARGET }}/web.py
+          #   python ${{ secrets.REMOTE_TARGET }}/web.py
+    - name: Start Gradio App
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          echo ls
+          echo ${{ secrets.REMOTE_TARGET }}/web.py
+          python ${{ secrets.REMOTE_TARGET }}/web.py
