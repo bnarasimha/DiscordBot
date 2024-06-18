@@ -28,7 +28,7 @@ jobs:
         sudo python -m venv venv
     - name: Install dependencies
       run: |
-        sudo source venv/bin/activate
+        source venv/bin/activate
         sudo pip install --upgrade pip
         sudo pip install -r requirements.txt
     - name: Deploy to Paperspace Core Machine
