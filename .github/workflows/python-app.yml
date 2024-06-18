@@ -42,5 +42,6 @@ jobs:
         script: |
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+          pip install --upgrade pip
+          pip install -r /home/paperspace/Documents/discordbot/requirements.txt
           python /home/paperspace/Documents/discordbot/web.py
