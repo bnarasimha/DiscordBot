@@ -1,9 +1,8 @@
 import gradio as gr
-#import rag
-import rag_working
+import rag
 
 def getAnswer(query):
-    return rag_working.getResponse(query)
+    return rag.getResponse(query)
 
 demo = gr.Interface(
     fn=getAnswer,

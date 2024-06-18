@@ -1,17 +1,35 @@
-from langchain_core.runnables import RunnableLambda
-from chains import route, paperspace_category_chain, getRagChain
+from langchain_community.llms import Ollama
+from langchain_core.output_parsers import StrOutputParser
+
+from langchain_chroma import Chroma
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_community.vectorstores.utils import filter_complex_metadata
+from retreive_documents import retriever
+
+MODEL = "mistral"
+model = Ollama(model=MODEL)
+embeddings = OllamaEmbeddings(model=MODEL)
+
+
+template = """Answer the question based only on the following context:
+{context}
+
+Question: {question}
+"""
+prompt = ChatPromptTemplate.from_template(template)
+output_parser = StrOutputParser()
+
+setup_and_retrieval = RunnableParallel(
+    {"context": retriever, "question": RunnablePassthrough()}
+)
+
+chain = setup_and_retrieval | prompt | model | output_parser
 
 def getResponse(query):
-        
-    full_chain = {"topic": paperspace_category_chain, "question": lambda x: x["question"]} | RunnableLambda(
-        route
-    )
-    result = full_chain.invoke({"question":query})
-    return result
-
-
-#print(getResponse("Which are the real world applications of DINO 1.5?"))
-
-# query = "Which are the real world applications of DINO 1.5?"
-# ragChain = getRagChain()
-# print(ragChain.invoke({"question":query}))
+    print(retriever.invoke(query))
+    response = chain.invoke(query)
+    return response
