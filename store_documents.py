@@ -6,8 +6,6 @@ from bs4 import BeautifulSoup
 from langchain_community.document_loaders import WebBaseLoader
 #from langchain_community.document_loaders import SeleniumURLLoader
 
-load_dotenv('.env.local')
-
 storage_path = os.getenv('STORAGE_PATH')
 if storage_path is None:
     raise ValueError('STORAGE_PATH environment variable is not set')

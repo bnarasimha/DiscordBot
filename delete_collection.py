@@ -2,8 +2,6 @@ import chromadb
 from dotenv import load_dotenv
 import os
 
-load_dotenv('.env.local')
-
 storage_path = os.getenv('STORAGE_PATH')
 if storage_path is None:
     raise ValueError('STORAGE_PATH environment variable is not set')

@@ -10,8 +10,6 @@ from langchain_community.embeddings.sentence_transformer import (
 MODEL = "mistral"
 model = Ollama(model=MODEL)
 
-load_dotenv('.env.local')
-
 storage_path = os.getenv('STORAGE_PATH')
 if storage_path is None:
     raise ValueError('STORAGE_PATH environment variable is not set')
