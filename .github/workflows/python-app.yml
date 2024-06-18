@@ -36,7 +36,7 @@ jobs:
           #   whoami
           #   ls -al
           SCRIPT_AFTER: |
-            pip install -r requirements.txt
+            echo ls
             echo ${{ secrets.REMOTE_TARGET }}/web.py
             python ${{ secrets.REMOTE_TARGET }}/web.py
     # - name: Start Gradio App
