@@ -19,34 +19,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.9
+    - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: "3.9"
-    - name: Setup Python virtual environment
-      run: |
-        sudo python -m venv venv
+        python-version: "3.10"
     - name: Install dependencies
       run: |
-        source venv/bin/activate
-        sudo pip install --upgrade pip
-        sudo pip install -r requirements.txt
-    - name: Deploy to Paperspace Core Machine
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@main
       with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i"
-          SOURCE: discordbot
+          SOURCE: "./"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        port: 22
-        script:
-            rm -r ${{ secrets.REMOTE_TARGET }}/*.*
-            export STORAGE_PATH=$HOME/Documents/chromadb
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
             python ${{ secrets.REMOTE_TARGET }}/web.py
