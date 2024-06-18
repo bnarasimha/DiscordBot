@@ -56,11 +56,11 @@ docs = loader.load()
 
 docs = list(map(cleanHtml, docs))
  
-# for doc in docs:
-#     print(doc.page_content)
-#     collection.upsert(
-#         ids=[str(uuid.uuid1())], metadatas=doc.metadata, documents=doc.page_content
-#     )
+for doc in docs:
+    print(doc.page_content)
+    collection.upsert(
+        ids=[str(uuid.uuid1())], metadatas=doc.metadata, documents=doc.page_content
+    )
 
 # results = collection.query(
 #     query_texts=["what is the price of VPN Gateway?"], 
