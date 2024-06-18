@@ -33,8 +33,7 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
           SCRIPT_BEFORE: |
-            whoami
-            ls -al
+            rm -r ${{ secrets.REMOTE_TARGET }}/*.*
           SCRIPT_AFTER: |
             export STORAGE_PATH=$HOME/Documents/chromadb
             python -m pip install --upgrade pip
