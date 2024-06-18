@@ -1,0 +1,54 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: SSH Deployment
+      # You may pin to the exact commit or the version.
+      # uses: saranraj3195/sparkout-deployment@c4665eb5fc6ae732e5f15341125b89c3c96b9680
+      uses: saranraj3195/sparkout-deployment@v2
+      with:
+        # SSH private key for authentication
+        DEPLOY_KEY: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACBJwxgrYdSUlaWC5PMPoIeAhmbs5WaVKTl1nNHFf3k/mwAAAJjJ/Ontyfzp
+7QAAAAtzc2gtZWQyNTUxOQAAACBJwxgrYdSUlaWC5PMPoIeAhmbs5WaVKTl1nNHFf3k/mw
+AAAEC/kUKee5dawpEQcoTZDJToHVZslwks7rkKfP5+AGWtZEnDGCth1JSVpYLk8w+gh4CG
+ZuzlZpUpOXWc0cV/eT+bAAAAFW5iYWRyaW5hdGhAUDM0SFk5OVRDWQ==
+        # SSH username
+        USERNAME: paperspace
+        # IP address of the server
+        SERVER_IP: 172.83.13.180
+        # SSH port of the server
+        SERVER_PORT: 22
+        # Destination directory on the server
+        SERVER_DESTINATION: Documents/discordbot
+        # Additional rsync arguments
+        ARGS: # optional
+        # Folder to deploy
+        FOLDER: # optional
+          
