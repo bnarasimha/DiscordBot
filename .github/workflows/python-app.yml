@@ -24,11 +24,9 @@ jobs:
       with:
         python-version: "3.10"
     - name: Setup Python virtual environment
-      working-directory: discordbot
       run: |
         sudo python -m venv venv
     - name: Install dependencies
-      working-directory: discordbot
       run: |
         source venv/bin/activate
         pip install --upgrade pip
