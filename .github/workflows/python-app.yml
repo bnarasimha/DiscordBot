@@ -32,13 +32,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-          # SCRIPT_BEFORE: |
-          #   whoami
-          #   ls -al
-          # SCRIPT_AFTER: |
-          #   echo ls
-          #   echo ${{ secrets.REMOTE_TARGET }}/web.py
-          #   python ${{ secrets.REMOTE_TARGET }}/web.py
     - name: Start Gradio App
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -47,5 +40,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          sudo pip install -r requirements.txt
-          sudo python /home/paperspace/Documents/discordbot/web.py
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python /home/paperspace/Documents/discordbot/web.py
