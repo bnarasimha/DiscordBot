@@ -48,4 +48,4 @@ jobs:
         port: 22
         script: |
           sudo pip install -r requirements.txt
-          sudo python ${{ secrets.REMOTE_TARGET }}/web.py
+          sudo python /home/paperspace/Documents/discordbot/web.py
