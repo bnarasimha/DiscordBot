@@ -28,22 +28,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: SSH Deployment
-      # You may pin to the exact commit or the version.
-      # uses: saranraj3195/sparkout-deployment@c4665eb5fc6ae732e5f15341125b89c3c96b9680
-      uses: saranraj3195/sparkout-deployment@v2
+    - name: Deploy to Staging server
+      uses: easingthemes/ssh-deploy@main
       with:
-        # SSH private key for authentication
-        DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        # SSH username
-        USERNAME: paperspace
-        # IP address of the server
-        SERVER_IP: 172.83.13.180
-        # SSH port of the server
-        SERVER_PORT: 22
-        # Destination directory on the server
-        SERVER_DESTINATION: Documents/discordbot
-        # Additional rsync arguments
-        ARGS: # optional
-        # Folder to deploy
-        FOLDER: # optional
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/venv/"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            python ${{ secrets.REMOTE_TARGET }}/web.py
