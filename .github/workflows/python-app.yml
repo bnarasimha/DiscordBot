@@ -49,5 +49,5 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          pip install -r requirements.txt
-          python web.py
+          pip3 install -r requirements.txt
+          python3 ${{ secrets.REMOTE_TARGET }}/web.py
