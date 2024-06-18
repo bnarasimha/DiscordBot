@@ -47,6 +47,5 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          cd /home/paperspace/Documents/discordbot
-          ls
-          python ${{ secrets.REMOTE_TARGET }}/web.py
+          sudo pip install -r requirements.txt
+          sudo python ${{ secrets.REMOTE_TARGET }}/web.py
