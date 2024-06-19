@@ -2,9 +2,9 @@ import chromadb
 from dotenv import load_dotenv
 import os
 
-storage_path = os.getenv('STORAGE_PATH')
+storage_path = os.getenv('CHROMADB_STORAGE_PATH')
 if storage_path is None:
-    raise ValueError('STORAGE_PATH environment variable is not set')
+    raise ValueError('CHROMADB_STORAGE_PATH environment variable is not set')
 
 client = chromadb.PersistentClient(path=storage_path)
 

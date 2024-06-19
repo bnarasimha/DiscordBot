@@ -40,10 +40,10 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          cd /home/paperspace/Documents/discordbot
+          cd $DISCORD_BOT_ROOT
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
           pip install -r requirements.txt
-          export STORAGE_PATH=/home/paperspace/Documents/chromadb
-          python web.py
+          fuser -k 7860/tcp
+          python web.py &
