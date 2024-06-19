@@ -14,24 +14,59 @@ client = chromadb.PersistentClient(path=storage_path)
 
 collection = client.get_or_create_collection(name="paperspace_collection")
 
+links = ["https://www.paperspace.com/",
+"https://www.paperspace.com/pricing",
+"https://www.paperspace.com/notebooks",
+"https://www.paperspace.com/machines",
+"https://www.paperspace.com/deployments",		
+"https://www.paperspace.com/artificial-intelligence",
+"https://www.paperspace.com/gradient",
+"https://www.paperspace.com/gradient/workflows",
+"https://www.paperspace.com/gradient/deployments",		
+"https://www.paperspace.com/gradient/pricing",	
+"https://www.paperspace.com/gradient/cli",	
+"https://www.paperspace.com/gradient/enterprise",
+"https://www.paperspace.com/gradient/all-solutions",
+"https://www.paperspace.com/products",
+"https://www.paperspace.com/core",	
+"https://www.paperspace.com/paperspace-ai-ml-cloud",
+"https://www.paperspace.com/paperspace-vs-san-francisco-compute",
+"https://www.paperspace.com/paperspace-vs-microsoft-azure",
+"https://www.paperspace.com/paperspace-vs-crusoe",
+"https://www.paperspace.com/paperspace-vs-lambda-labs",
+"https://www.paperspace.com/paperspace-vs-coreweave",
+"https://www.paperspace.com/alternative-to-colab-pro",
+"https://www.paperspace.com/paperspace-vs-sagemaker",
+"https://www.paperspace.com/deployment",	
+"https://www.paperspace.com/gpu",
+"https://www.paperspace.com/faq-cloud-gpu",
+"https://www.paperspace.com/a100-gpus",
+"https://www.paperspace.com/h100-gpus-are-available-now",
+"https://www.paperspace.com/a6000-gpus-are-available-now",		
+"https://www.paperspace.com/gpu-cloud-machine-learning",	
+"https://www.paperspace.com/computer-vision",
+"https://www.paperspace.com/natural-language-processing",
+"https://www.paperspace.com/professional-services",
+"https://www.paperspace.com/gpu-cloud-comparison",	
+"https://www.paperspace.com/gpu-cloud-comparison",
+"https://www.paperspace.com/about",
+"https://www.paperspace.com/careers",
+"https://www.paperspace.com/contact-sales",
+"https://www.paperspace.com/business",
+"https://www.paperspace.com/security",
+"https://www.paperspace.com/download-app",
+"https://www.paperspace.com/gpu-cloud-built-for-machine-learning",
+"https://www.paperspace.com/deepfakes",
+"https://www.paperspace.com/nvidia-h100",
+"https://www.paperspace.com/customers",
+"https://www.paperspace.com/nvidia-csp-partner",
+"https://www.paperspace.com/advanced-technologies-group",
+"https://www.paperspace.com/graphcore-2",
+"https://www.paperspace.com/legal",
+"https://www.paperspace.com/legal/acceptable-use-policy",
+"https://www.paperspace.com/legal/terms-of-service",
+"https://www.paperspace.com/legal/privacy-policy"]
 
-links = ["https://www.paperspace.com/about"
-         "https://www.paperspace.com/",
-         "https://www.paperspace.com/notebooks",
-         "https://www.paperspace.com/machines",
-         "https://www.paperspace.com/deployments",
-         "https://blog.paperspace.com",
-         "https://www.paperspace.com/professional-services",
-         "https://www.paperspace.com/contact-sales",
-         "https://www.paperspace.com/pricing",
-         "https://status.paperspace.com",
-         "https://www.paperspace.com/customers",
-         "https://docs.digitalocean.com/products/paperspace/"
-         ]
-
-# urls = ["https://www.paperspace.com/pricing"]
-# loader = SeleniumURLLoader(urls=urls)
-# links = ["https://www.paperspace.com/about"]
 loader = WebBaseLoader(links)
 
 import html2text
@@ -79,35 +114,20 @@ for doc in docs:
 
 
 
+# links = ["https://www.paperspace.com/about"
+#          "https://www.paperspace.com/",
+#          "https://www.paperspace.com/notebooks",
+#          "https://www.paperspace.com/machines",
+#          "https://www.paperspace.com/deployments",
+#          "https://blog.paperspace.com",
+#          "https://www.paperspace.com/professional-services",
+#          "https://www.paperspace.com/contact-sales",
+#          "https://www.paperspace.com/pricing",
+#          "https://status.paperspace.com",
+#          "https://www.paperspace.com/customers",
+#          "https://docs.digitalocean.com/products/paperspace/"
+#          ]
 
-
-# #collection = client.get_or_create_collection(name="mycollection")
-# collection = chroma_client.create_collection(name="mycollection")
-
-# if collection.count() < 0:
-#     collection.add(
-#         documents=[
-#    "This is a document about machine learning",
-#    "This is another document about data science",
-#    "A third document about artificial intelligence"
-#   ],
-#   metadatas=[
-#    {"source": "test1"},
-#    {"source": "test2"},
-#    {"source": "test3"}
-#   ],
-#   ids=["id1", "id2", "id3"]
-#  )
-
-# # private endpoint if running http server (in that case, its fine):
-# print(client.list_collections())
-
-
-# results = collection.query(
-#     query_texts=[
-#         "This is a query about machine learning and data science"
-#     ],
-#     n_results=1
-# )
-
-# print(results)
+# urls = ["https://www.paperspace.com/pricing"]
+# loader = SeleniumURLLoader(urls=urls)
+# links = ["https://www.paperspace.com/about"]

@@ -5,14 +5,12 @@ from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
-from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores.utils import filter_complex_metadata
 from retreive_documents import retriever
 
 MODEL = "mistral"
 model = Ollama(model=MODEL)
-embeddings = OllamaEmbeddings(model=MODEL)
 
 
 template = """You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. 
