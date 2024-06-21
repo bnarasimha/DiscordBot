@@ -8,6 +8,7 @@ from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores.utils import filter_complex_metadata
 from retreive_documents import retriever
+from logger import log_info
 
 MODEL = "mistral"
 model = Ollama(model=MODEL)
@@ -29,7 +30,10 @@ setup_and_retrieval = RunnableParallel(
 
 chain = setup_and_retrieval | prompt | model | output_parser
 
+
 def getResponse(query):
     print(retriever.invoke(query))
     response = chain.invoke(query)
+
+    log_info(query, response)
     return response
