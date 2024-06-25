@@ -40,10 +40,13 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }} 
         port: 22
         script: |
+          pwd
           cd $DISCORD_BOT_ROOT
+          pwd
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
+          pwd
           pip install -r requirements.txt
           fuser -k 7860/tcp
           python web.py &
