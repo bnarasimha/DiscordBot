@@ -41,11 +41,8 @@ jobs:
         port: 22
         script: |
           cd /home/paperspace/Documents/discordbot
-          export CHROMADB_STORAGE_PATH=/home/paperspace/Documents/chromadb
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
-          pwd
           pip install -r requirements.txt
-          fuser -k 7860/tcp
-          python web.py &
+          sudo systemctl restart discordbot_gradioapp
