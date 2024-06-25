@@ -40,8 +40,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }} 
         port: 22
         script: |
-          pwd > pwd.txt
           cd $DISCORD_BOT_ROOT
+          pwd > pwd.txt
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
