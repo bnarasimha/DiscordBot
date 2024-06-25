@@ -41,7 +41,7 @@ jobs:
         port: 22
         script: |
           cd /home/paperspace/Documents/discordbot
-          pwd > pwd.txt
+          export CHROMADB_STORAGE_PATH=/home/paperspace/Documents/chromadb
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
