@@ -41,7 +41,7 @@ jobs:
         port: 22
         script: |
           hostname
-          pwd
+          echo $DISCORD_BOT_ROOT
           cd $DISCORD_BOT_ROOT
           pwd
           python -m venv venv
