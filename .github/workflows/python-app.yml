@@ -40,7 +40,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }} 
         port: 22
         script: |
-          cd $DISCORD_BOT_ROOT
+          cd /home/paperspace/Documents/discordbot
           pwd > pwd.txt
           python -m venv venv
           source venv/bin/activate
