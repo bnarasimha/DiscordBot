@@ -19,7 +19,6 @@ storage_path = "/home/paperspace/Documents/chromadb"
 client = chromadb.PersistentClient(path=storage_path)
 
 collection = client.get_collection("paperspace_collection")
-#collection = client.get_collection("playwright_paperspace_collection")
 
 embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
