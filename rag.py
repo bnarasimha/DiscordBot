@@ -30,10 +30,12 @@ setup_and_retrieval = RunnableParallel(
 
 chain = setup_and_retrieval | prompt | model | output_parser
 
-
 def getResponse(query):
     print(retriever.invoke(query))
     response = chain.invoke(query)
 
     log_info(query, response)
     return response
+
+if __name__ == "__main__":
+    print(getResponse("What is paperspac?"))
