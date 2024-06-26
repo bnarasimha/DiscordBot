@@ -8,7 +8,7 @@ from langchain_community.document_loaders import WebBaseLoader
 
 storage_path = os.getenv('CHROMADB_STORAGE_PATH')
 if storage_path is None:
-    raise ValueError('CHROMADB_STORAGE_PATH environment variable is not set')
+    storage_path = "/home/paperspace/Documents/chromadb"
 
 client = chromadb.PersistentClient(path=storage_path)
 
