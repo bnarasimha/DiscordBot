@@ -45,4 +45,5 @@ jobs:
           source venv/bin/activate
           pip install --upgrade pip
           pip install -r requirements.txt
+          export CHROMADB_STORAGE_PATH=/home/paperspace/Documents/chromadb
           sudo systemctl restart discordbot_gradioapp

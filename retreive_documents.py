@@ -10,9 +10,9 @@ from langchain_community.embeddings.sentence_transformer import (
 MODEL = "mistral"
 model = Ollama(model=MODEL)
 
-# storage_path = os.getenv('CHROMADB_STORAGE_PATH')
-# if storage_path is None:
-#     raise ValueError('CHROMADB_STORAGE_PATH environment variable is not set')
+storage_path = os.getenv('CHROMADB_STORAGE_PATH')
+if storage_path is None:
+    raise ValueError('CHROMADB_STORAGE_PATH environment variable is not set')
 
 storage_path = "/home/paperspace/Documents/chromadb"
 
