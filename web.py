@@ -23,11 +23,11 @@ with gr.Blocks() as demo:
     """)
     with gr.Row():
         with gr.Column(scale=1):
-            inp = gr.Textbox(label="Question", placeholder="What is your name?")
+            inp = gr.Textbox(label="Question", placeholder="What is Paperspace?")
             submit_btn = gr.Button(value="Submit")
         with gr.Column(scale=2):
             out = gr.Textbox(label="Answer")
-            #inp.change(getAnswer, inp, out)
+            inp.submit(getAnswer, inp, out)
             with gr.Row():
                 correct_btn = gr.Button(value="Correct Answer")
                 needs_improvement_btn = gr.Button(value="Needs Improvement")
