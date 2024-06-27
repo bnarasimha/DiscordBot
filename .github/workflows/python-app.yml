@@ -32,7 +32,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: "/logs/
+          EXCLUDE: "/logs/"
     - name: Start Gradio App
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -46,5 +46,4 @@ jobs:
           source venv/bin/activate
           pip install --upgrade pip
           pip install -r requirements.txt
-          export CHROMADB_STORAGE_PATH=/home/paperspace/Documents/chromadb
           sudo systemctl restart discordbot_gradioapp
