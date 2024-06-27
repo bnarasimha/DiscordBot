@@ -1,0 +1,13 @@
+[Unit]
+Description=A simple Gradio app for testing Discord bot intermediate functionality
+After=network.target
+
+[Service]
+User=paperspace
+Group=www-data
+WorkingDirectory=/home/paperspace/Documents/discordbot
+Environment="PATH=/home/paperspace/Documents/discordbot/venv/bin"
+ExecStart=/home/paperspace/Documents/discordbot/venv/bin/python /home/paperspace/Documents/discordbot/web.py
+
+[Install]
+WantedBy=multi-user.target
