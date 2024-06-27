@@ -1,4 +1,5 @@
 #Create initial folders needed
+cd /home/paperspace
 mkdir Documents
 cd Documents
 mkdir discordbot
@@ -39,10 +40,16 @@ ollama pull mistral
 
 #Restart system for proper Cuda functionaing 
 
+#Copy service file to /etc/systemd/system/
+sudo cp /home/paperspace/Documents/discordbot/scripts/discordbot_gradioapp.service /etc/systemd/system/
+
 #Create a linux service
 sudo systemctl start discordbot-gradioapp
 
 #Enable service to run on system start
 sudo systemctl enable discordbot-gradioapp
 
-
+#Enable firewall and allow access to 22 and 7860 ports
+sudo ufw enable
+sudo ufw allow 22/tcp
+sudo ufw allow 7860/tcp
