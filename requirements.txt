@@ -10,3 +10,4 @@ gradio
 html2text
 selenium
 playwright
+discord
