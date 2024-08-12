@@ -1,0 +1,13 @@
+[Unit]
+Description=A simple service to run strore_documents.py which gets the data from external sourcesand stores in vector  db
+After=network.target
+
+[Service]
+User=paperspace
+Group=www-data
+WorkingDirectory=/home/paperspace/Documents/discordbot
+Environment="PATH=/home/paperspace/Documents/discordbot/venv/bin"
+ExecStart=/home/paperspace/Documents/discordbot/venv/bin/python /home/paperspace/Documents/discordbot/store_documents.py
+
+[Install]
+WantedBy=multi-user.target
