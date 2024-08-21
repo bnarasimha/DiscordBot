@@ -16,13 +16,13 @@ if storage_path is None:
 
 client = chromadb.PersistentClient(path=storage_path)
 
-collection = client.get_collection("paperspace_collection")
+collection = client.get_collection("gpudroplet_collection")
 
 embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 vectorstore = Chroma(
     client=client,
-    collection_name="paperspace_collection",
+    collection_name="gpudroplet_collection",
     embedding_function=embedding_function
 )
 

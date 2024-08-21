@@ -23,27 +23,27 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
-    - name: Deploy to Paperspace Core Machine
+    - name: Deploy to GPU Droplet
       uses: easingthemes/ssh-deploy@main
       with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.NEW_SSH_PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i"
           SOURCE: "./"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          REMOTE_HOST: ${{ secrets.NEW_REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.NEW_REMOTE_USER }}
+          TARGET: ${{ secrets.NEW_REMOTE_TARGET }}
           EXCLUDE: "/logs/"
-    - name: Start Gradio App
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }} 
-        port: 22
-        script: |
-          cd /home/paperspace/Documents/discordbot
-          python -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          sudo systemctl restart discordbot_gradioapp
+    # - name: Start Gradio App
+    #   uses: appleboy/ssh-action@v1.0.3
+    #   with:
+    #     host: ${{ secrets.NEW_REMOTE_HOST }}
+    #     username: ${{ secrets.NEW_REMOTE_USER }}
+    #     key: ${{ secrets.NEW_SSH_PRIVATE_KEY }} 
+    #     port: 22
+    #     script: |
+    #       cd /home/paperspace/Documents/discordbot
+    #       python -m venv venv
+    #       source venv/bin/activate
+    #       pip install --upgrade pip
+    #       pip install -r requirements.txt
+    #       sudo systemctl restart discordbot_gradioapp

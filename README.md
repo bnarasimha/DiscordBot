@@ -19,6 +19,8 @@ DISCORD_TOKEN= <>
 Change any links and data to be fed into Vector DB and execute below command to vectorize data into the DB 
 ```python store_documents.py```
 
+Alternatively, create a linux service "store_documents" provided under scripts folder, on the linux machine and start the service.
+
 
 ### Running the application
 1. Run app.py to run it as api application and test it via postman etc

@@ -1,5 +1,5 @@
 [Unit]
-Description=A simple service to run strore_documents.py which gets the data from external sourcesand stores in vector  db
+Description=A simple service to run strore_documents.py which gets the data from external sources and stores in vector db
 After=network.target
 
 [Service]
