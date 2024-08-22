@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb
+    volumes:
+      - ./data/chromadb:/chroma/chroma # Mounts the volume on the host to the container
+    ports:
+      - "8000:8000" # Expose port if needed to communicate externally
+
+  store_documents:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: store_documents
+    command: python store_documents.py
+    depends_on:
+      - chromadb
+    volumes:
+      - ./data/chromadb:/app/chromadb # Uses the same mounted volume for storing documents
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web
+    command: python web.py
+    depends_on:
+      - store_documents
+    ports:
+      - "7860:7860" # Expose port for the web service
+    volumes:
+      - ./data/chromadb:/app/chromadb # Uses the same mounted volume for retrieving documents
+
+volumes:
+  chromadb_data:
+    driver: local

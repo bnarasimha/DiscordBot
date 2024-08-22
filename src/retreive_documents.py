@@ -12,7 +12,7 @@ model = Ollama(model=MODEL)
 
 storage_path = os.getenv('CHROMADB_STORAGE_PATH')
 if storage_path is None:
-    storage_path = "/home/paperspace/Documents/chromadb"
+    storage_path = "/app/chromadb"
 
 client = chromadb.PersistentClient(path=storage_path)
 
