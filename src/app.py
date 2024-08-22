@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-import rag
+import rag as rag
 
 app = Flask(__name__)
 

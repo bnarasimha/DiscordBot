@@ -1,7 +1,7 @@
 #!/bin/python
 import os
 import discord
-import bot_response
+import bot.bot_response as bot_response
 
 async def send_message(message, user_message, is_private):
     try:
