@@ -1,4 +1,4 @@
-import src.rag as rag
+import webapp.rag as rag
 
 def handle_response(message) -> str:
     query = message.lower()

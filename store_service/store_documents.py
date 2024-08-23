@@ -1,8 +1,6 @@
-import chromadb
-from dotenv import load_dotenv
 import os
 import uuid
-from bs4 import BeautifulSoup
+import chromadb
 from langchain_community.document_loaders import WebBaseLoader
 
 storage_path = os.getenv('CHROMADB_STORAGE_PATH')

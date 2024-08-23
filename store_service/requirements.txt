@@ -1,0 +1,8 @@
+langchain
+langchain-community
+langchainhub
+langchain-chroma
+transformers
+langchain-huggingface
+html2text
+beautifulsoup4
