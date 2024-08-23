@@ -14,7 +14,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: store_documents
-    command: python store_documents.py
+    command: python src/store_documents.py
     depends_on:
       - chromadb
     volumes:
@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: web
-    command: python web.py
+    command: python src/web.py
     depends_on:
       - store_documents
     ports:
