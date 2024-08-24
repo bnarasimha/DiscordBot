@@ -25,19 +25,14 @@ def create_interface() -> gr.Blocks:
                 submit_btn = gr.Button("Submit")
             with gr.Column(scale=2):
                 out = gr.Textbox(label="Answer")
-        print(f"DEBUG: ANTS")
         inp.submit(get_answer, inputs=inp, outputs=out)
-        print(f"DEBUG: AFTER INP SUBMIT")
         
         submit_btn.click(get_answer, inputs=inp, outputs=out)
-        print(f"DEBUG: AFTER CLICK")
         
     
     return demo
 
 if __name__ == "__main__":
-    print(f"DEBUG:     interface = create_interface()")
     interface = create_interface()
     interface.launch(server_name="0.0.0.0", server_port=7860)
-    print("DEBUG: serving.....")
     
