@@ -47,7 +47,15 @@ services:
     networks:
       - app_network
     extra_hosts:
-      - "host.docker.internal:host-gateway"      
+      - "host.docker.internal:host-gateway"
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
 
 networks:
