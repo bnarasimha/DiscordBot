@@ -8,31 +8,56 @@ services:
       - ./data/chromadb:/chroma/chroma # Mounts the volume on the host to the container
     ports:
       - "8000:8000" # Expose port if needed to communicate externally
+    networks:
+      - app_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"      
 
   store_documents:
     build:
       context: ./store_service
       dockerfile: Dockerfile
     container_name: store_documents
-    command: python store_documents.py
+    command: sh -c "python store_documents.py && tail -f /dev/null"
     depends_on:
       - chromadb
     volumes:
       - ./data/chromadb:/app/chromadb # Uses the same mounted volume for storing documents
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - app_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"      
 
   web:
     build:
       context: ./webapp
       dockerfile: Dockerfile
     container_name: web
-    command: python web.py
     depends_on:
       - store_documents
     ports:
-      - "7860:7860" # Expose port for the web service
+      - "7860:7860" 
     volumes:
-      - ./data/chromadb:/app/chromadb # Uses the same mounted volume for retrieving documents
+      - ./data/chromadb:/app/chromadb 
+    networks:
+      - app_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
-volumes:
-  chromadb_data:
-    driver: local
+
+networks:
+  app_network:
+    driver: bridge

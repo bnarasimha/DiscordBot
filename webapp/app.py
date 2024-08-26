@@ -11,7 +11,7 @@ def hello_world():
 @app.route('/getAnswer', methods=['GET'])
 def getAnswer():
     query = request.args.get('query')
-    return rag.getResponse(query)
+    return rag.get_response(query)
     
 if __name__ == '__main__':
     app.run()

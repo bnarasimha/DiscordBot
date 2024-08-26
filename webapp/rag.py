@@ -7,26 +7,25 @@ from retreive_documents import retriever
 MODEL = "mistral"
 model = Ollama(model=MODEL)
 
-template = """You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. 
-If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
+template = """You are an assistant for question-answering tasks. Use the following context to answer the question concisely in three sentences or less. If you don't know, say so.
 
-{context}
+Context: {context}
 
 Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(template)
-output_parser = StrOutputParser()
 
-setup_and_retrieval = RunnableParallel(
-    {"context": retriever, "question": RunnablePassthrough()}
+chain = (
+    RunnableParallel(
+        {"context": retriever, "question": RunnablePassthrough()}
+    )
+    | prompt
+    | model
+    | StrOutputParser()
 )
 
-chain = setup_and_retrieval | prompt | model | output_parser
-
-def getResponse(query):
-    #print(retriever.invoke(query))
-    response = chain.invoke(query)
-    return response
+def get_response(query: str) -> str:
+    return chain.invoke(query)
 
 if __name__ == "__main__":
-    print(getResponse("What is paperspace?"))
+    print(get_response("What are GPU Droplets?"))

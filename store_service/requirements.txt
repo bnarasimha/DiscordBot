@@ -6,3 +6,4 @@ transformers
 langchain-huggingface
 html2text
 beautifulsoup4
+pypdf
